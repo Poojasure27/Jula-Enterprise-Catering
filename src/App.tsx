@@ -145,7 +145,7 @@ const MenuSection = () => {
             <h2 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-4">
               Explosive <br/><span className="text-coral">Flavors.</span>
             </h2>
-            <p className="text-xl text-cream/70 max-w-md">Curated menus designed to impress executives and satisfy thousands.</p>
+            <p className="text-xl text-cream/70 max-w-md">Curated menus designed to impress and satisfy thousands.</p>
           </div>
           
           <div className="flex flex-wrap gap-2 justify-end max-w-2xl">
@@ -304,7 +304,7 @@ const Footer = () => (
           <h2 className="text-6xl md:text-8xl font-display font-black uppercase tracking-tighter mb-8">
             Let's <br/><span className="text-emerald">Talk</span> Scale.
           </h2>
-          <p className="text-xl text-cream/70 max-w-md mb-8">Ready to elevate your corporate dining experience? Our account managers are standing by.</p>
+          <p className="text-xl text-cream/70 max-w-md mb-8">Ready to elevate your experience? Our account managers are standing by.</p>
           <div className="flex gap-4">
             <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-saffron transition-colors cursor-pointer"><Building2 size={20} /></div>
             <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-emerald transition-colors cursor-pointer"><Users size={20} /></div>
