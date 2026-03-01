@@ -9,6 +9,7 @@ import {
 
 const Navbar = ({ onOpenGallery }: { onOpenGallery: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -21,7 +22,7 @@ const Navbar = ({ onOpenGallery }: { onOpenGallery: () => void }) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-cream/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
+        isScrolled || isMobileMenuOpen ? 'bg-cream/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -32,6 +33,7 @@ const Navbar = ({ onOpenGallery }: { onOpenGallery: () => void }) => {
           JULA<span className="text-saffron">.</span>
         </div>
         
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8 font-medium text-sm uppercase tracking-wider">
           <a href="#menu" className="hover:text-saffron transition-colors">Menu</a>
           <a href="#why-us" className="hover:text-emerald transition-colors">Why Us</a>
@@ -40,7 +42,36 @@ const Navbar = ({ onOpenGallery }: { onOpenGallery: () => void }) => {
             Book Tasting
           </button>
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="md:hidden text-ink p-2"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden overflow-hidden bg-cream/95 backdrop-blur-md border-t border-ink/5 mt-4"
+          >
+            <div className="flex flex-col items-center py-8 gap-6 font-medium text-sm uppercase tracking-wider">
+              <a href="#menu" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-saffron transition-colors">Menu</a>
+              <a href="#why-us" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-emerald transition-colors">Why Us</a>
+              <button onClick={() => { setIsMobileMenuOpen(false); onOpenGallery(); }} className="hover:text-cobalt transition-colors">Our Kitchen</button>
+              <button className="bg-ink text-white px-8 py-4 rounded-full hover:bg-saffron transition-colors mt-4">
+                Book Tasting
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 };
@@ -145,7 +176,7 @@ const MenuSection = () => {
             <h2 className="text-5xl md:text-7xl font-display font-black uppercase tracking-tighter mb-4">
               Explosive <br/><span className="text-coral">Flavors.</span>
             </h2>
-            <p className="text-xl text-cream/70 max-w-md">Curated menus designed to impress and satisfy thousands.</p>
+            <p className="text-xl text-cream/70 max-w-md">Curated menus designed to impress executives and satisfy thousands.</p>
           </div>
           
           <div className="flex flex-wrap gap-2 justify-end max-w-2xl">
@@ -304,7 +335,7 @@ const Footer = () => (
           <h2 className="text-6xl md:text-8xl font-display font-black uppercase tracking-tighter mb-8">
             Let's <br/><span className="text-emerald">Talk</span> Scale.
           </h2>
-          <p className="text-xl text-cream/70 max-w-md mb-8">Ready to elevate your experience? Our account managers are standing by.</p>
+          <p className="text-xl text-cream/70 max-w-md mb-8">Ready to elevate your corporate dining experience? Our account managers are standing by.</p>
           <div className="flex gap-4">
             <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-saffron transition-colors cursor-pointer"><Building2 size={20} /></div>
             <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-emerald transition-colors cursor-pointer"><Users size={20} /></div>
